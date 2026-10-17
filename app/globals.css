@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --success: 142 71% 45%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-white text-zinc-900 antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    @apply bg-blue-100 text-blue-900;
+  }
+}
+
+@layer utilities {
+  .border-border {
+    border-color: hsl(240 5.9% 90%);
+  }
+
+  /* Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d8 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #d4d4d8;
+    border-radius: 100px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #a1a1aa;
+  }
+
+  /* Markdown output */
+  .prose-ocr h1, .prose-ocr h2, .prose-ocr h3,
+  .prose-ocr h4, .prose-ocr h5, .prose-ocr h6 {
+    @apply font-semibold text-zinc-900 leading-tight;
+  }
+  .prose-ocr h1 { @apply text-xl mb-3 mt-5; }
+  .prose-ocr h2 { @apply text-lg mb-2 mt-4; }
+  .prose-ocr h3 { @apply text-base mb-2 mt-3; }
+  .prose-ocr p { @apply text-sm text-zinc-700 leading-relaxed mb-3; }
+  .prose-ocr ul { @apply list-disc pl-5 mb-3 space-y-1; }
+  .prose-ocr ol { @apply list-decimal pl-5 mb-3 space-y-1; }
+  .prose-ocr li { @apply text-sm text-zinc-700; }
+  .prose-ocr code {
+    @apply text-xs font-mono bg-zinc-100 text-blue-700 px-1.5 py-0.5 rounded;
+  }
+  .prose-ocr pre {
+    @apply bg-zinc-950 text-zinc-100 rounded-lg p-4 text-xs font-mono overflow-x-auto mb-3;
+  }
+  .prose-ocr pre code {
+    @apply bg-transparent text-zinc-100 p-0;
+  }
+  .prose-ocr blockquote {
+    @apply border-l-4 border-zinc-200 pl-4 italic text-zinc-500 mb-3;
+  }
+  .prose-ocr table { @apply w-full border-collapse mb-3; }
+  .prose-ocr th {
+    @apply text-left text-xs font-semibold text-zinc-500 uppercase tracking-wider
+           bg-zinc-50 border border-zinc-200 px-3 py-2;
+  }
+  .prose-ocr td {
+    @apply text-sm text-zinc-700 border border-zinc-200 px-3 py-2;
+  }
+  .prose-ocr hr { @apply border-zinc-200 my-4; }
+  .prose-ocr strong { @apply font-semibold text-zinc-900; }
+  .prose-ocr a { @apply text-blue-600 hover:underline; }
+
+  /* Loading shimmer */
+  @keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #f4f4f5 25%, #e4e4e7 50%, #f4f4f5 75%);
+    background-size: 800px 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: 4px;
+  }
+
+  /* Processing pulse */
+  @keyframes pulse-ring {
+    0% { transform: scale(0.95); opacity: 1; }
+    50% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(0.95); opacity: 1; }
+  }
+  .pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
